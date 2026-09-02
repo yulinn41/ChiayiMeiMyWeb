@@ -96,11 +96,11 @@
       }
 
       .bg-step1 {
-        background-image: url("icon/addpage2_pc.webp");
+        background-image: url("icon/addpage1_pc.webp");
       }
 
       .bg-step2 {
-        background-image: url("icon/addpage3_pc.webp");
+        background-image: url("icon/addpage1_pc.webp");
       }
     }
 
@@ -536,7 +536,7 @@
   
   /* ⭐ 內框線：調整 inset 後面的數值（例如從 0 改成 6px），讓 1px 內框更往內縮 */
   box-shadow: inset 0 0 0 6px rgba(255,255,255, 0), /* 這裡用透明推開距離 */
-              inset 0 0 0 8px rgba(255,255,255, 0.3),                /* 這條就是 1px 內框，數字越大越往內 */
+              inset 6 6 6 8px rgba(255,255,255, 0.3),                /* 這條就是 1px 內框，數字越大越往內 */
               0 4px 12px rgba(0, 0, 0, 0.35);         /* 原本的外陰影 */
   box-sizing: border-box;
 }
@@ -570,7 +570,7 @@
 
     .style-item {
       width: 120px;
-      background: #222;
+      background: rgba(255,255,255, 0.3);
       border-radius: 10px;
       padding-bottom: 6px;
       cursor: pointer;
@@ -582,14 +582,16 @@
       border-color: #f7f8ff;
       transform: scale(1.06);
       border-radius: calc(10px / 1.06);
-      box-shadow: 0 0 10px rgba(252, 232, 58, 0.45);
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
     }
 
     .style-image {
-      width: 100%;
+      width: 90%;
       aspect-ratio: 1/1;
       object-fit: cover;
-      border-radius: 10px 10px 6px 6px;
+      border-radius: 6px 6px 4px 4px;
+      display: block;         /* 必須是 block 元素 */
+      margin: 6px auto 0 auto;/* 上方留一點間距，左右 auto 實現水平置中 */
     }
 
     .style-name {
@@ -605,7 +607,7 @@
       font-size: 0.75rem;
       font-weight: 600;
 
-      color: #e9d056;
+      color: #ffffff;
     }
 
     /* 中文（下） */

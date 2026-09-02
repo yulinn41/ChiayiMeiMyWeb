@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const hour = now.getHours();
 
 
-  if (!isAdmin  && (hour < 17 || hour >= 24)) {
+  if (!isAdmin  && (hour < 0 || hour >= 24)) {
     const overlay = document.createElement("div");
 
     overlay.style.position = "fixed";
@@ -110,10 +110,10 @@ document.addEventListener("DOMContentLoaded", () => {
     overlay.style.textAlign = "center";
 
     overlay.innerHTML = `
-            <h1 style="font-size:2rem; ">入口拱門，閃爍星星。</h1>
-             <h1 style="font-size:2rem; margin-bottom:1rem;">奔跑的童年</h1>
-            <p style="font-size:1.2rem; margin-bottom:1.5rem;">目前尚未開放使用</p>
-            <p style="font-size:1rem;">開放時間：晚間 17:00–24:00</p>
+            <h1 style="font-size:2rem; ">2026</h1>
+             <h1 style="font-size:2rem; margin-bottom:1rem;">嘉義美賣圖鑑</h1>
+            <p style="font-size:1.2rem; margin-bottom:1.5rem;">網站建置中</p>
+            <p style="font-size:1rem;"></p>
         `;
 
     document.body.appendChild(overlay);
