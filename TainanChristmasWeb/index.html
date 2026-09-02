@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026嘉義美賣圖鑑</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- ====================== PAGE 1：首頁 ====================== -->
+  <!-- ====================== PAGE 1：首頁 ====================== -->
+  <div id="page1" class="page-section bg-home">
+    <!-- Full Page Loading Overlay -->
+    <div id="pageLoading">
+      <div class="loading-box">
+        <div class="loading-text">Loading ...</div>
+        <div class="loading-bar">
+          <div class="loading-progress" id="pageLoadingBar"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1. HomeText-top (高度 10%) -->
+    <div class="home-top">
+      <img src="icon/HomeText-top.png" alt="HomeText-top" class="home-img-fit">
+    </div>
+
+    <!-- 2. HomeText-Icon (高度 30%) -->
+    <div class="home-icon-wrap">
+      <img src="icon/HomeText-Icon.png" alt="HomeText-Icon" class="home-img-fit">
+    </div>
+
+    <!-- 3. HomeText-Title (高度 15%) -->
+    <div class="home-title-wrap">
+      <img src="icon/HomeText-Title.png" alt="HomeText-Title" class="home-img-fit">
+    </div>
+
+    <!-- 4. HomeText-Intro (高度 20%) -->
+    <div class="home-intro-wrap">
+      <img src="icon/HomeText-Intro.png" alt="HomeText-Intro" class="home-img-fit">
+    </div>
+
+    <!-- 5. Home-button (按鈕圖片) -->
+    <!-- 5. Home-button (直接用圖片當作按鈕) -->
+    <img src="icon/Home-button.png" alt="Home-button" id="startBtn" class="home-btn-wrap">
+
+  </div>
+
+  <!-- ====================== PAGE 2：STEP 1 ====================== -->
+ <!-- ====================== PAGE 2：STEP 1 ====================== -->
+  <div id="page2" class="page-section bg-step1">
+
+    <div class="step-container" style="width: 80%; max-width: 600px; margin: 0 auto;">
+      <!-- ⭐ 1. 圖片在卡片外面、上方 -->
+      <div class="step-logo-wrap">
+        <img src="icon/HomeText-Icon.png" alt="Logo" class="step-logo">
+      </div>
+
+      <!-- 2. 卡片本體 -->
+      <div id="step1" class="step-card">
+        <div class="step-title">Step 1：選擇風格</div>
+        <div class="step-note">你喜歡哪一年的美呢?</div>
+
+        <div id="styleSelector">
+          <div class="style-item selected" data-style="classic">
+            <img src="icon/bgbtn_1.png" class="style-image">
+            <div class="style-name">
+              <div class="roman">2023</div>
+              <div class="zh">嘉義美街圖鑑</div>
+            </div>
+          </div>
+
+          <div class="style-item" data-style="snow">
+            <img src="icon/bgbtn_2.png" class="style-image">
+            <div class="style-name">
+              <div class="roman">2024</div>
+              <div class="zh">嘉義美物圖鑑</div>
+            </div>
+          </div>
+
+          <div class="style-item" data-style="gold">
+            <img src="icon/bgbtn_3.png" class="style-image">
+            <div class="style-name">
+              <div class="roman">2025</div>
+              <div class="zh">嘉義美白圖鑑</div>
+            </div>
+          </div>
+
+          <div class="style-item" data-style="pastel">
+            <img src="icon/bgbtn_4.png" class="style-image">
+            <div class="style-name">
+              <div class="roman">2026</div>
+              <div class="zh">嘉義美賣圖鑑</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- ====================== PAGE 3：STEP 2 + Footer ====================== -->
+  <div id="page3" class="page-section bg-step2">
+    <div id="step2" class="step-card">
+      <div class="step-title">Step 2：無聲廣播</div>
+      <div class="step-note">請輸入一句祝福或想說的話。</div>
+
+      <canvas id="previewCanvas"></canvas>
+      <input id="inputText" type="text" placeholder="輸入祝福文字…" />
+      <div id="countHint">0 / 8</div>
+
+      <div class="button-row">
+
+        <button id="wsBtn" class="action-btn">送出</button>
+      </div>
+    </div>
+
+    <footer class="footer-credit">
+      <div class="developed-by-container">
+        <img src="icon/lightfulllogo_white.png" alt="Lightfull Studio Logo" class="footer-logo">
+        <p>Developed by Lightfull Studio</p>
+      </div>
+    </footer>
+  </div>
+  <!-- ======================Done Page ====================== -->
+
+  <div id="donePage" class="page-section done-page bg-home" style="display:none">
+    <div class="done-content">
+      <!-- 主要卡片（對齊 Step Card） -->
+      <div class="step-card step-visible done-card">
+        <!-- Loading 動畫 -->
+        <div id="doneLoading" class="loading-wrap">
+          <div class="lds-ripple">
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+        <!-- 成功動畫（一開始隱藏） -->
+        <div id="doneSuccess" class="success-wrap" style="display:none">
+          <svg class="checkmark" viewBox="0 0 52 52">
+            <circle class="checkmark-circle" cx="26" cy="26" r="24" fill="none" />
+            <path class="checkmark-check" fill="none" d="M14 27 l7 7 l17 -17" />
+          </svg>
+        </div>
+
+        <div class="step-title">請留意現場螢幕</div>
+
+        <!-- 狀態文字 -->
+        <p id="doneText" class="done-text">
+          <span class="done-prefix">你的無聲廣播將在約 </span>
+          <span id="etaSec"></span>
+          <span class="done-suffix"> 秒後出現</span>
+        </p>
+
+
+        <p class="notice">
+          <strong>注意事項 Notice</strong>
+
+          <span class="notice-item">
+            <span class="bullet">．</span>
+            <span class="notice-text">
+              <span class="zh">請避免短時間內重複傳送內容，以免影響系統穩定。</span>
+              <span class="en">Please avoid repeatedly submitting content within a short period of time, as this may
+                affect system stability.</span>
+            </span>
+          </span>
+
+          <span class="notice-item">
+            <span class="bullet">．</span>
+            <span class="notice-text">
+              <span class="zh">本系統為公共互動裝置，請輪流使用，讓每位參與者都能順利體驗。</span>
+              <span class="en">This is a public interactive installation. Please take turns so that everyone can enjoy
+                the
+                experience.</span>
+            </span>
+          </span>
+        </p>
+        <!-- 回到首頁（樣式 = startBtn） -->
+        <div class="done-btn-row">
+          <div class="done-btn-wrap">
+            <button id="backHomeBtn" class="done-btn">
+              回到首頁
+            </button>
+          </div>
+
+          <div class="done-btn-wrap">
+            <a href="https://linktr.ee/fakefireatelier" target="_blank" rel="noopener noreferrer">
+              <button class="done-btn herfcolor">
+                Reborn : 南火之誕
+              </button>
+            </a>
+          </div>
+        </div>
+
+
+
+      </div>
+
+    </div>
+    <!-- Footer Credit Logos -->
+    <div class="done-footer">
+      <img src="icon/tmcc.png" alt="TMCC">
+      <img src="icon/fakefire.png" alt="Fake Fire Atelier">
+      <img src="icon/lightfulllogo_white.png" alt="Lightfull Studio">
+    </div>
+  </div>
+
+
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.161.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.161.0/examples/jsm/"
+    }
+  }
+</script>
+  <script type="module" src="logo3d.js"></script>
+
+  <script src="script.js"></script>
+
+</body>
+
+
+
+</html>

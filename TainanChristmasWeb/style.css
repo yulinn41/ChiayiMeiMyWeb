@@ -1,0 +1,784 @@
+    body {
+
+      background-color: #000;
+      font-family: "Noto Sans TC", sans-serif;
+      color: white;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      scroll-behavior: smooth;
+    }
+
+
+
+    /* ⭐ 全螢幕頁面容器 */
+    .page-section {
+      height: calc(var(--vh, 1vh) * 100);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      box-sizing: border-box;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    /* ===============================
+   Full Page Loading
+   =============================== */
+
+    #pageLoading {
+      position: fixed;
+      inset: 0;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.6s ease;
+    }
+
+    #pageLoading.hide {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .loading-box {
+      width: 280px;
+      text-align: center;
+      color: #fff;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont;
+    }
+
+    .loading-text {
+      margin-bottom: 14px;
+      font-size: 14px;
+      letter-spacing: 1px;
+      opacity: 0.8;
+    }
+
+    .loading-bar {
+      width: 100%;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .loading-progress {
+      width: 0%;
+      height: 100%;
+      background: #ffffff;
+      transition: width 0.2s ease;
+    }
+
+    /* Page 1 & Done */
+    .bg-home {
+      background-image: url("icon/addpage1.webp");
+    }
+
+    /* Page 2 */
+    .bg-step1 {
+      background-image: url("icon/addpage1.webp");
+    }
+
+    /* Page 3 */
+    .bg-step2 {
+      background-image: url("icon/addpage1.webp");
+    }
+
+    /* 桌機橫式 */
+    @media (min-width: 768px) {
+      .bg-home {
+        background-image: url("icon/addpage1_pc.png");
+      }
+
+      .bg-step1 {
+        background-image: url("icon/addpage2_pc.webp");
+      }
+
+      .bg-step2 {
+        background-image: url("icon/addpage3_pc.webp");
+      }
+    }
+
+    /* Reborn Header 區塊 */
+    .reborn-header {
+      width: 100%;
+      text-align: center;
+
+
+    }
+
+    /* ===============================
+   首頁 (Page 1) 全圖化排版
+   =============================== */
+    #page1 {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      /* 讓內容整體置中 */
+      align-items: center;
+      box-sizing: border-box;
+      padding: 20px 0;
+      gap: 2.5vh;
+      /* ⭐ 1. 讓五個區塊之間自動產生舒適的間距 */
+    }
+
+    /* 統一讓首頁內的所有區塊寬度為 80% */
+    #page1>div,
+    #page1>button {
+      width: 80%;
+      max-width: 450px;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-shrink: 0;
+      /* 防止被強制壓縮 */
+    }
+
+    /* 讓裡面的圖片自動縮放填滿容器，保持原本比例不變形 */
+    .home-img-fit {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    /* 1. HomeText-top */
+    .home-top {
+      height: 8%;
+    }
+
+    /* 2. HomeText-Icon */
+    .home-icon-wrap {
+      height: 26%;
+    }
+
+    /* 3. HomeText-Title */
+    .home-title-wrap {
+      height: 12%;
+    }
+
+    /* 4. HomeText-Intro */
+    .home-intro-wrap {
+      height: 18%;
+    }
+
+    /* ⭐ 2 & 3. Home-button 縮小高度、調整樣式並解決點擊沒反應問題 */
+    .home-btn-wrap {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      height: 8%;
+      max-height: 50px;
+      width: auto;
+      /* ⭐ 讓寬度隨著圖片比例自動縮放，而不是佔滿 80% */
+      object-fit: contain;
+      transition: transform 0.15s ease;
+      pointer-events: auto;
+
+      -webkit-tap-highlight-color: transparent;
+      outline: none;
+      z-index: 10;
+    }
+
+    /* ⭐ 確保點擊按鈕或內部的圖片時，事件都能被正確觸發 */
+    .home-btn-wrap img {
+      pointer-events: none;
+    }
+
+    .home-btn-wrap:focus {
+      outline: none;
+    }
+
+    .home-btn-wrap:active {
+      transform: scale(0.95);
+    }
+
+    /* 疊加黑色半透明的覆蓋層 */
+    #page1::before {
+      content: "";
+      /* 偽元素必須有 content 屬性 */
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+
+      /* 這裡設定黑色與透明度 */
+      background-color: rgba(0, 0, 0, 0);
+      /* 黑色，透明度 50% */
+      /* 您可以調整最後的數字 (0.1 到 1) 來改變透明度，例如 0.7 會更黑 */
+
+      z-index: 0;
+      /* 確保覆蓋層位於內容文字之下 */
+    }
+
+    /* 確保 page1 內的內容 (文字、按鈕等) 在最上層 */
+    .reborn-header,
+    .main-title,
+    .subtitle,
+    .start-btn {
+      z-index: 2;
+      /* 高於 z-index: 1 的 page1 本體和 z-index: 0 的 ::before 覆蓋層 */
+      position: relative;
+      /* 確保 z-index 生效 */
+    }
+
+    /* ===============================
+   Done Page 補強
+   =============================== */
+
+    .done-card {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+
+    .done-text {
+      margin: 12px 0 8px 0;
+      font-size: 1rem;
+      opacity: 0.85;
+    }
+
+    /* ===============================
+   Done Page Footer Logos
+   =============================== */
+
+    .done-content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .done-footer {
+      margin-top: 20px;
+      display: flex;
+      gap: 24px;
+      opacity: 0.6;
+    }
+
+    .done-footer img {
+      height: 28px;
+      width: auto;
+    }
+
+
+    .loading-wrap {
+      margin: 10px 0 18px 0;
+      color: #f7f8ff;
+      /* 黃色呼吸感 */
+    }
+
+
+
+    /* ===============================
+   Ripple Loading（你提供的）
+   =============================== */
+    .lds-ripple,
+    .lds-ripple div {
+      box-sizing: border-box;
+    }
+
+    .lds-ripple {
+      display: inline-block;
+      position: relative;
+      width: 80px;
+      height: 80px;
+    }
+
+    .lds-ripple div {
+      position: absolute;
+      border: 4px solid currentColor;
+      opacity: 1;
+      border-radius: 50%;
+      animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+    }
+
+    .lds-ripple div:nth-child(2) {
+      animation-delay: -0.5s;
+    }
+
+    @keyframes lds-ripple {
+      0% {
+        top: 36px;
+        left: 36px;
+        width: 8px;
+        height: 8px;
+        opacity: 0;
+      }
+
+      5% {
+        opacity: 1;
+      }
+
+      100% {
+        top: 0;
+        left: 0;
+        width: 80px;
+        height: 80px;
+        opacity: 0;
+      }
+    }
+
+    /* ===============================
+   成功打勾動畫
+   =============================== */
+
+    .success-wrap {
+      margin: 12px 0 18px 0;
+      color: #f7f8ff;
+    }
+
+    /* SVG 本體 */
+    .checkmark {
+      width: 72px;
+      height: 72px;
+      stroke-width: 4;
+      stroke: currentColor;
+      stroke-miterlimit: 10;
+      animation: checkmark-scale 0.3s ease-in-out forwards;
+    }
+
+    /* 外圈 */
+    .checkmark-circle {
+      stroke-dasharray: 166;
+      stroke-dashoffset: 166;
+      animation: checkmark-circle 0.6s ease-out forwards;
+    }
+
+    /* 勾勾 */
+    .checkmark-check {
+      stroke-dasharray: 48;
+      stroke-dashoffset: 48;
+      animation: checkmark-check 0.4s ease-out 0.5s forwards;
+    }
+
+    @keyframes checkmark-circle {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    @keyframes checkmark-check {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    @keyframes checkmark-scale {
+      0% {
+        transform: scale(0.6);
+        opacity: 0;
+      }
+
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .notice {
+      margin-top: 14px;
+      font-size: 0.8rem;
+      line-height: 1.5;
+      opacity: 0.6;
+      max-width: 420px;
+      position: relative;
+
+    }
+
+
+    .notice::before {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 1px;
+      margin: 0 auto 14px auto;
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    .notice-item {
+      display: flex;
+      align-items: flex-start;
+      margin-top: 8px;
+    }
+
+    /* 左邊 bullet */
+    .notice-item .bullet {
+      width: 1.2em;
+      flex-shrink: 0;
+      text-align: center;
+    }
+
+    /* 右邊中英群組 */
+    .notice-text {
+      display: flex;
+      flex-direction: column;
+      /* ⭐ 關鍵 */
+    }
+
+    /* 中文 */
+    .notice-text .zh {
+      display: block;
+    }
+
+    /* 英文 */
+    .notice-text .en {
+      display: block;
+      margin-top: 2px;
+      font-size: 0.75rem;
+      opacity: 0.85;
+    }
+
+
+    #logoCanvas3D {
+      width: 200px;
+      aspect-ratio: 2 / 3;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .reborn-logo {
+      width: 70px;
+      height: auto;
+      display: block;
+      margin: 0 auto 12px auto;
+      opacity: 0.9;
+    }
+
+    .reborn-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #999;
+      letter-spacing: 1px;
+      margin-bottom: 0px;
+    }
+
+    /* 主標題 */
+    .main-title {
+      text-align: center;
+      line-height: 1.5em;
+      margin: 0 auto 10px auto;
+      width: 85%;
+      max-width: 400px;
+      font-size: 1.8rem;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      color: #f7f8ff;
+      text-shadow: 0 0 30px rgba(252, 232, 58, 0.3);
+    }
+
+    @media (max-width: 400px) {
+      .main-title {
+        font-size: 1.5rem;
+      }
+    }
+
+    /* 作品描述文字 */
+    .subtitle {
+      width: 85%;
+      max-width: 420px;
+      margin: 0 auto 25px auto;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      opacity: 0.8;
+      color: #ddd;
+    }
+/* 外層容器（同時控制 Logo 與 Card 的對齊） */
+.step-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 圖片在卡片外側上方的樣式 */
+.step-logo-wrap {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 12px; /* 與下方卡片的距離 */
+}
+
+.step-logo {
+  max-width: 120px; /* 可依需求調整 Logo 大小 */
+  height: auto;
+  display: inline-block;
+}
+
+/* ===============================
+   Step 1 卡片雙層邊框設定
+   =============================== */
+.step-card {
+  width: 100%; /* 配合 container 寬度 */
+  padding: 20px;
+  background: rgba(255,255,255, 0.3);
+  border-radius: 14px;
+  box-shadow: 0 4px 12px  rgba(255,255,255, 0.3);
+  text-align: left;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+
+  /* 外框：2px 白色邊框 */
+  border: 2px solid #ffffff;
+  
+  /* ⭐ 內框線：調整 inset 後面的數值（例如從 0 改成 6px），讓 1px 內框更往內縮 */
+  box-shadow: inset 0 0 0 6px rgba(255,255,255, 0), /* 這裡用透明推開距離 */
+              inset 0 0 0 8px rgba(255,255,255, 0.3),                /* 這條就是 1px 內框，數字越大越往內 */
+              0 4px 12px rgba(0, 0, 0, 0.35);         /* 原本的外陰影 */
+  box-sizing: border-box;
+}
+
+
+    .step-visible {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+    }
+
+    .step-title {
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .step-note {
+      font-size: 0.9rem;
+      opacity: 0.7;
+      margin-bottom: 12px;
+    }
+
+    /* 風格選擇器 */
+    #styleSelector {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    .style-item {
+      width: 120px;
+      background: #222;
+      border-radius: 10px;
+      padding-bottom: 6px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: 0.2s ease;
+    }
+
+    .style-item.selected {
+      border-color: #f7f8ff;
+      transform: scale(1.06);
+      border-radius: calc(10px / 1.06);
+      box-shadow: 0 0 10px rgba(252, 232, 58, 0.45);
+    }
+
+    .style-image {
+      width: 100%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      border-radius: 10px 10px 6px 6px;
+    }
+
+    .style-name {
+      margin-top: 6px;
+      font-size: 0.85rem;
+      text-align: center;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    /* 羅馬拼音（上） */
+    .style-name .roman {
+      font-size: 0.75rem;
+      font-weight: 600;
+
+      color: #e9d056;
+    }
+
+    /* 中文（下） */
+    .style-name .zh {
+      font-size: 0.9rem;
+      font-weight: 800;
+      margin-top: 2px;
+    }
+
+    /* 預覽畫面 */
+    #previewCanvas {
+      width: 80%;
+      max-width: 800px;
+      height: auto;
+      display: block;
+      margin: 14px auto;
+      border: 1px solid #333;
+    }
+
+    /* 輸入框 */
+    #inputText {
+      width: 80%;
+      margin: 12px auto 0 auto;
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      background: #222;
+      color: white;
+      text-align: center;
+      font-size: 20px;
+      display: block;
+    }
+
+    #countHint {
+      text-align: right;
+      width: 80%;
+      margin: 4px auto;
+      opacity: 0.7;
+    }
+
+    #countHint.over {
+      color: #ff5c5c;
+      opacity: 1;
+    }
+
+    /* 按鈕組 */
+    .button-row {
+      width: 80%;
+      margin: 60px auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .action-btn {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.15s ease;
+    }
+
+    #downloadBtn {
+      background: #6c757d;
+      color: white;
+    }
+
+    #wsBtn {
+      background: #f7f8ff;
+      color: #000;
+    }
+
+    .action-btn:active {
+      transform: scale(0.97);
+    }
+
+    /* Footer */
+    .footer-credit {
+      width: 100%;
+      text-align: center;
+      padding: 30px 0;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .footer-visible {
+      opacity: 0.85;
+      transform: translateY(0);
+    }
+
+    .developed-by-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      color: #ffffff;
+      font-size: 0.8rem;
+    }
+
+    .developed-by-container p {
+      margin-top: 0.5rem;
+    }
+
+    .footer-logo {
+      width: auto;
+      height: 5%;
+      max-height: 30px;
+    }
+
+    /* 黃色開始體驗按鈕 */
+    .start-btn {
+      background: #f7f8ff;
+      color: #000;
+      padding: 14px 28px;
+      font-size: 1.1rem;
+      border-radius: 50px;
+      border: none;
+      font-weight: 800;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .start-btn:active {
+      transform: scale(0.96);
+    }
+
+    /* ===============================
+   Done Page Buttons（專用）
+   =============================== */
+
+    .done-btn-row {
+      width: 100%;
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      /* ⭐ 改成上下 */
+      gap: 14px;
+      align-items: center;
+    }
+
+    .done-btn-wrap {
+      width: 80%;
+      max-width: 180px;
+      /* ⭐ 唯一寬度來源 */
+    }
+
+    .done-btn-wrap a {
+      display: block;
+    }
+
+    .done-btn {
+      width: 100%;
+      padding: 14px 0;
+      border-radius: 50px;
+      border: none;
+      font-size: 1.05rem;
+      font-weight: 800;
+      cursor: pointer;
+      background: #f7f8ff;
+      color: #000;
+      transition: 0.2s;
+    }
+
+    .done-btn.herfcolor {
+
+      background: #e9d056;
+    }
+
+
+    .done-btn:active {
+      transform: scale(0.96);
+    }
