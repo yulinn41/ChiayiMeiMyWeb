@@ -517,31 +517,46 @@
   display: inline-block;
 }
 
+
 /* ===============================
    Step 1 卡片雙層邊框設定
    =============================== */
 .step-card {
   width: 100%; /* 配合 container 寬度 */
   padding: 20px;
-  background: rgba(255,255,255, 0.3);
+  background: rgba(255, 255, 255, 0.3);
   border-radius: 14px;
-  box-shadow: 0 4px 12px  rgba(255,255,255, 0.3);
   text-align: left;
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.45s ease, transform 0.45s ease;
 
-  /* 外框：2px 白色邊框 */
+  /* 1. 外框：2px 白色實線 */
   border: 2px solid #ffffff;
   
-  /* ⭐ 內框線：調整 inset 後面的數值（例如從 0 改成 6px），讓 1px 內框更往內縮 */
-  box-shadow: inset 0 0 0 6px rgba(255,255,255, 0), /* 這裡用透明推開距離 */
-              inset 6 6 6 8px rgba(255,255,255, 0.3),                /* 這條就是 1px 內框，數字越大越往內 */
-              0 4px 12px rgba(0, 0, 0, 0.35);         /* 原本的外陰影 */
+  /* 2. 僅保留原本的外陰影 */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35); 
   box-sizing: border-box;
+  
+  /* ⭐ 讓內部偽元素可以對齊定位 */
+  position: relative; 
 }
 
-
+/* ⭐ 用偽元素做出獨立的內框線（解決 box-shadow 變成厚塊的問題） */
+.step-card::after {
+  content: "";
+  position: absolute;
+  top: 8px;     /* 距離上方內縮 6px */
+  left: 8px;    /* 距離左方內縮 6px */
+  right: 8px;   /* 距離右方內縮 6px */
+  bottom: 8px;  /* 距離下方內縮 6px */
+  
+  /* 內框線的粗細與顏色（例如 1px 或 2px 白色半透明線） */
+  border: 1.5px solid rgba(255, 255, 255, 0.3); 
+  
+  border-radius: 8px; /* 配合外框圓角讓內框弧度更自然 */
+  pointer-events: none; /* 確保滑鼠點擊可以穿透，不會擋到底下的按鈕或選項 */
+}
     .step-visible {
       opacity: 1 !important;
       transform: translateY(0) !important;

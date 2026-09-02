@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const hour = now.getHours();
 
 
-  if (!isAdmin  && (hour < 0 || hour >= 24)) {
+  if (!isAdmin  && (hour < 24 || hour >= 24)) {
     const overlay = document.createElement("div");
 
     overlay.style.position = "fixed";
