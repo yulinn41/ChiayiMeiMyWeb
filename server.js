@@ -17,9 +17,9 @@ const PORT = process.env.PORT || 8081;
  * Express (Web)
  * -------------------------------------------------- */
 const app = express();
-app.use(express.static(path.join(__dirname, "TainanChristmasWeb")));
+app.use(express.static(path.join(__dirname, "ChiayiMeiMy")));
 app.get("*", (req, res) =>
-  res.sendFile(path.join(__dirname, "TainanChristmasWeb", "index.html"))
+  res.sendFile(path.join(__dirname, "ChiayiMeiMy", "index.html"))
 );
 
 const server = http.createServer(app);

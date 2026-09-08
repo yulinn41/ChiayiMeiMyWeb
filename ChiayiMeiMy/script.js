@@ -556,7 +556,7 @@ let ws;
 let unityConnected = false;
 
 function connectWebSocket() {
-  ws = new WebSocket("wss://tainanchristmas.onrender.com");
+  ws = new WebSocket("wss://lostandfound-chiayi2026.onrender.com");
   ws.binaryType = "arraybuffer"; // Ensure browser uses Binary
 
   ws.onopen = () => console.log("已連接伺服器");
