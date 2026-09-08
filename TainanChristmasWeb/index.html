@@ -10,7 +10,6 @@
 
 <body>
   <!-- ====================== PAGE 1：首頁 ====================== -->
-  <!-- ====================== PAGE 1：首頁 ====================== -->
   <div id="page1" class="page-section bg-home">
     <!-- Full Page Loading Overlay -->
     <div id="pageLoading">
@@ -22,47 +21,44 @@
       </div>
     </div>
 
-    <!-- 1. HomeText-top (高度 10%) -->
-    <div class="home-top">
-      <img src="icon/HomeText-top.png" alt="HomeText-top" class="home-img-fit">
+    <!-- 📱 1. 手機直式專用排版（預設顯示，電腦橫式隱藏） -->
+    <div class="home-mobile-layout">
+      <div class="home-top"><img src="icon/HomeText-top.png" alt="Top" class="home-img-fit"></div>
+      <div class="home-icon-wrap"><img src="icon/HomeText-Icon.png" alt="Icon" class="home-img-fit"></div>
+      <div class="home-title-wrap"><img src="icon/HomeText-Title.png" alt="Title" class="home-img-fit"></div>
+      <div class="home-intro-wrap"><img src="icon/HomeText-Intro.png" alt="Intro" class="home-img-fit"></div>
+      <img src="icon/Home-button.png" alt="Button" class="home-btn-wrap start-trigger">
     </div>
 
-    <!-- 2. HomeText-Icon (高度 30%) -->
-    <div class="home-icon-wrap">
-      <img src="icon/HomeText-Icon.png" alt="HomeText-Icon" class="home-img-fit">
-    </div>
+    <!-- 💻 2. 電腦橫式專屬雙欄排版（預設隱藏，寬螢幕時顯示） -->
+    <div class="home-desktop-layout">
+      <div class="home-col-left">
+        <div class="home-top"><img src="icon/HomeText-top.png" alt="Top" class="home-img-fit"></div>
+        <div class="home-icon-wrap"><img src="icon/HomeText-Icon.png" alt="Icon" class="home-img-fit"></div>
+        <!-- 只有電腦橫式才有的日期圖片 -->
+        <div class="home-row-wrap"><img src="icon/homepage_row.png" alt="Date" class="home-img-fit"></div>
+      </div>
+      <div class="home-col-right">
+        <div class="home-title-wrap"><img src="icon/HomeText-Title.png" alt="Title" class="home-img-fit"></div>
 
-    <!-- 3. HomeText-Title (高度 15%) -->
-    <div class="home-title-wrap">
-      <img src="icon/HomeText-Title.png" alt="HomeText-Title" class="home-img-fit">
-    </div>
+        <!-- ⭐ 電腦橫式專用介紹圖片 -->
+        <div class="home-intro-wrap"><img src="icon/HomeText-Intro-PC.png" alt="Intro PC" class="home-img-fit"></div>
 
-    <!-- 4. HomeText-Intro (高度 20%) -->
-    <div class="home-intro-wrap">
-      <img src="icon/HomeText-Intro.png" alt="HomeText-Intro" class="home-img-fit">
+        <img src="icon/Home-button.png" alt="Button" class="home-btn-wrap start-trigger">
+      </div>
     </div>
-
-    <!-- 5. Home-button (按鈕圖片) -->
-    <!-- 5. Home-button (直接用圖片當作按鈕) -->
-    <img src="icon/Home-button.png" alt="Home-button" id="startBtn" class="home-btn-wrap">
 
   </div>
 
   <!-- ====================== PAGE 2：STEP 1 ====================== -->
- <!-- ====================== PAGE 2：STEP 1 ====================== -->
   <div id="page2" class="page-section bg-step1">
-
-    <div class="step-container" style="width: 80%; max-width: 600px; margin: 0 auto;">
-      <!-- ⭐ 1. 圖片在卡片外面、上方 -->
+    <div class="step-container" >
       <div class="step-logo-wrap">
         <img src="icon/HomeText-Icon.png" alt="Logo" class="step-logo">
       </div>
-
-      <!-- 2. 卡片本體 -->
       <div id="step1" class="step-card">
         <div class="step-title">Step 1：選擇風格</div>
         <div class="step-note">你喜歡哪一年的美呢?</div>
-
         <div id="styleSelector">
           <div class="style-item selected" data-style="classic">
             <img src="icon/bgbtn_1.png" class="style-image">
@@ -71,7 +67,6 @@
               <div class="zh">嘉義美街圖鑑</div>
             </div>
           </div>
-
           <div class="style-item" data-style="snow">
             <img src="icon/bgbtn_2.png" class="style-image">
             <div class="style-name">
@@ -79,7 +74,6 @@
               <div class="zh">嘉義美物圖鑑</div>
             </div>
           </div>
-
           <div class="style-item" data-style="gold">
             <img src="icon/bgbtn_3.png" class="style-image">
             <div class="style-name">
@@ -87,7 +81,6 @@
               <div class="zh">嘉義美白圖鑑</div>
             </div>
           </div>
-
           <div class="style-item" data-style="pastel">
             <img src="icon/bgbtn_4.png" class="style-image">
             <div class="style-name">
@@ -98,24 +91,20 @@
         </div>
       </div>
     </div>
-
   </div>
+
   <!-- ====================== PAGE 3：STEP 2 + Footer ====================== -->
   <div id="page3" class="page-section bg-step2">
     <div id="step2" class="step-card">
       <div class="step-title">Step 2：無聲廣播</div>
-      <div class="step-note">請輸入一句祝福或想說的話。</div>
-
+      <div class="step-note">請輸入你覺得嘉義哪裡美賣喔?</div>
       <canvas id="previewCanvas"></canvas>
-      <input id="inputText" type="text" placeholder="輸入祝福文字…" />
+      <input id="inputText" type="text" placeholder="輸入想說的文字…" />
       <div id="countHint">0 / 8</div>
-
       <div class="button-row">
-
-        <button id="wsBtn" class="action-btn">送出</button>
+        <img src="icon/send-button.png" alt="送出按鈕" id="wsBtn" class="custom-submit-btn">
       </div>
     </div>
-
     <footer class="footer-credit">
       <div class="developed-by-container">
         <img src="icon/lightfulllogo_white.png" alt="Lightfull Studio Logo" class="footer-logo">
@@ -123,11 +112,12 @@
       </div>
     </footer>
   </div>
-  <!-- ======================Done Page ====================== -->
 
+  <!-- ====================== Done Page ====================== -->
+ <!-- ======================Done Page ====================== -->
   <div id="donePage" class="page-section done-page bg-home" style="display:none">
     <div class="done-content">
-      <!-- 主要卡片（對齊 Step Card） -->
+      <!-- 主要卡片（對齊 Step Card，文字靠左、高度適中） -->
       <div class="step-card step-visible done-card">
         <!-- Loading 動畫 -->
         <div id="doneLoading" class="loading-wrap">
@@ -153,7 +143,6 @@
           <span class="done-suffix"> 秒後出現</span>
         </p>
 
-
         <p class="notice">
           <strong>注意事項 Notice</strong>
 
@@ -161,8 +150,7 @@
             <span class="bullet">．</span>
             <span class="notice-text">
               <span class="zh">請避免短時間內重複傳送內容，以免影響系統穩定。</span>
-              <span class="en">Please avoid repeatedly submitting content within a short period of time, as this may
-                affect system stability.</span>
+              <span class="en">Please avoid repeatedly submitting content within a short period of time, as this may affect system stability.</span>
             </span>
           </span>
 
@@ -170,44 +158,35 @@
             <span class="bullet">．</span>
             <span class="notice-text">
               <span class="zh">本系統為公共互動裝置，請輪流使用，讓每位參與者都能順利體驗。</span>
-              <span class="en">This is a public interactive installation. Please take turns so that everyone can enjoy
-                the
-                experience.</span>
+              <span class="en">This is a public interactive installation. Please take turns so that everyone can enjoy the experience.</span>
             </span>
           </span>
         </p>
-        <!-- 回到首頁（樣式 = startBtn） -->
+
+        <!-- 回到首頁與連結圖片按鈕 -->
         <div class="done-btn-row">
           <div class="done-btn-wrap">
-            <button id="backHomeBtn" class="done-btn">
-              回到首頁
-            </button>
+            <img src="icon/btn-home.png" alt="回到首頁" id="backHomeBtn" class="done-img-btn">
           </div>
 
           <div class="done-btn-wrap">
-            <a href="https://linktr.ee/fakefireatelier" target="_blank" rel="noopener noreferrer">
-              <button class="done-btn herfcolor">
-                Reborn : 南火之誕
-              </button>
+            <a href="https://www.facebook.com/lostandfound.Chiayi/?locale=zh_TW" target="_blank" rel="noopener noreferrer">
+              <img src="icon/btn-link.png" alt="外部連結" class="done-img-btn">
             </a>
           </div>
         </div>
 
-
-
       </div>
-
     </div>
+
     <!-- Footer Credit Logos -->
     <div class="done-footer">
-      <img src="icon/tmcc.png" alt="TMCC">
-      <img src="icon/fakefire.png" alt="Fake Fire Atelier">
-      <img src="icon/lightfulllogo_white.png" alt="Lightfull Studio">
+      <img src="icon/icon-ccg.png" alt="ccg">
+      <img src="icon/icon-idipc.png" alt="idipc">
+      <img src="icon/icon-ead.png" alt="ead">
+      <img src="icon/icon-plan.png" alt="plan">
     </div>
   </div>
-
-
-
   <script type="importmap">
   {
     "imports": {
@@ -215,13 +194,9 @@
       "three/addons/": "https://unpkg.com/three@0.161.0/examples/jsm/"
     }
   }
-</script>
+  </script>
   <script type="module" src="logo3d.js"></script>
-
   <script src="script.js"></script>
-
 </body>
-
-
 
 </html>

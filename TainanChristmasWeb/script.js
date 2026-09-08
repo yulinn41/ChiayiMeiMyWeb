@@ -128,7 +128,6 @@ window.addEventListener("load", () => {
 /* =====================================================================
    UI 控制
    ===================================================================== */
-const startBtn = document.getElementById("startBtn");
 const page1 = document.getElementById("page1");
 const page2 = document.getElementById("page2");
 const page3 = document.getElementById("page3");
@@ -251,17 +250,20 @@ const backHomeBtn = document.getElementById("backHomeBtn");
 backHomeBtn.onclick = () => {
  window.location.reload();
 };
-startBtn.onclick = () => {
-  page2.style.display = "flex";
-  document.body.style.overflow ="auto";
-  setTimeout(() => {
-    step1.classList.add("step-visible");
-    window.scrollTo({
-      top: page2.offsetTop,
-      behavior: "smooth"
-    });
-  }, 100);
-};
+// ⭐ 同時綁定手機版與電腦版的所有開始按鈕
+document.querySelectorAll(".start-trigger").forEach(btn => {
+  btn.onclick = () => {
+    page2.style.display = "flex";
+    document.body.style.overflow ="auto";
+    setTimeout(() => {
+      step1.classList.add("step-visible");
+      window.scrollTo({
+        top: page2.offsetTop,
+        behavior: "smooth"
+      });
+    }, 100);
+  };
+});
 /* =====================================================================
    Style 選擇
    ===================================================================== */
@@ -599,14 +601,61 @@ connectWebSocket();
 const clientId = crypto.randomUUID();
 
 
+wsBtn.onclick = () => {
 
-/* ============================================================
-   WebSocket 傳送（Header + WebP）
-   ============================================================ */
+  // 1️⃣ 沒有輸入內容 → 不可送出
+  const text = inputText.value.trim();
+  if (!text) {
+    alert("請先輸入內容後再傳送");
+    return;
+  }
+
+  /* 🛠️ 【測試用】暫時略過 LED 裝置斷線檢查
+  if (!ws || ws.readyState !== WebSocket.OPEN || !unityConnected) {
+    alert("LED 裝置斷線中，請稍後再試！");
+    return;
+  }
+  */
+
+  // 2️⃣ 正常送出（並加入防呆，如果 WS 沒開就直接秀 Done Page 測試畫面）
+  exportPNGblob().then(async blob => {
+    try {
+      const buffer = await blob.arrayBuffer();
+
+      const header = {
+        type: "HEADER",
+        id: clientId,
+        meta: {
+          style: currentStyle
+        }
+      };
+
+      // 只有在 WebSocket 有連上時才送出，避免報錯
+      if (ws && ws.readyState === WebSocket.OPEN) {
+        ws.send(JSON.stringify(header));
+        ws.send(buffer);
+      } else {
+        console.warn("⚠️ WebSocket 尚未連線，目前為純前端介面測試模式");
+      }
+
+      // 🔹 顯示 Done Page
+      showDonePage(blob);
+      
+      // 🛠️ 測試用：因為沒有後台回傳 ETA，手動模擬 5 秒後顯示完成動畫
+      startDoneCountdown(5);
+
+      console.log("📤 [測試模式] 已模擬送出圖片", header);
+
+    } catch (err) {
+      console.error("❌ 圖片傳送失敗:", err);
+      alert("圖片傳送失敗，請再試一次");
+    }
+  });
+};
 /* ============================================================
    WebSocket 傳送（JSON Header + Binary Image）
    ============================================================ */
-wsBtn.onclick = () => {
+/*wsBtn.onclick = () => {
 
   // ❌ 1️⃣ 沒有輸入內容 → 不可送出
   const text = inputText.value.trim();
@@ -649,7 +698,7 @@ wsBtn.onclick = () => {
     }
   });
 };
-
+*/
 // ===============================
 // 52px LED 專用參數
 // ===============================
