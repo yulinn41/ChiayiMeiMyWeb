@@ -14,7 +14,7 @@ window.addEventListener('resize', () => {
 
 const STYLE_CONFIG = {
   classic: {
-    font: "700 50px 'Noto Sans TC'",
+    font: "700 50px 'Noto Serif TC'",
     textColor: "#FFFFFF",
 
     randomAngle: false,
@@ -24,7 +24,7 @@ const STYLE_CONFIG = {
   },
 
   snow: {
-    font: "700 50px 'Noto Sans TC'",
+    font: "700 50px 'Noto Serif TC'",
     textColor: "#000000",
     outline: [],
     randomAngle: true,
@@ -43,7 +43,7 @@ const STYLE_CONFIG = {
   },
 
   pastel: {
-    font: "700 50px 'Noto Sans TC'",
+    font: "700 50px 'Noto Serif TC'",
     textColor: "#24ff27",
 
     randomAngle: false,
