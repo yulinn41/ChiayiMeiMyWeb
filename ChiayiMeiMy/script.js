@@ -16,9 +16,7 @@ const STYLE_CONFIG = {
   classic: {
     font: "700 50px 'Noto Sans TC'",
     textColor: "#FFFFFF",
-    outline: [
-      { color: "#FF00FF", width: 3 }   // ⭐ 細描邊
-    ],
+
     randomAngle: false,
     randomScale: false,
     rectBg: null,
@@ -31,13 +29,12 @@ const STYLE_CONFIG = {
     outline: [],
     randomAngle: true,
     randomScale: false,
-    rectBg: "#CFFF00",
     customScale: 0.75,
   },
 
   gold: {
-    font: "700 50px 'Noto Sans TC'",
-    textColor: "#FFFFFF",
+    font: "700 50px 'Noto Serif TC'",
+    textColor: "#000000",
     outline: [],
     randomAngle: false,
     randomScale: false,
@@ -47,12 +44,8 @@ const STYLE_CONFIG = {
 
   pastel: {
     font: "700 50px 'Noto Sans TC'",
-    textColor: "#FF46BC",
-    outline: [
-      { color: "#FFFF56", width: 10 },
-      { color: "#93278F", width: 8 },
-      { color: "#F7931E", width: 3 }
-    ],
+    textColor: "#24ff27",
+
     randomAngle: false,
     randomScale: false,
     rectBg: null,
