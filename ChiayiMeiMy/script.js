@@ -11,10 +11,9 @@ window.addEventListener('resize', () => {
 /* ============================================================
    風格設定（字體 / 顏色 / 描邊 / 特效）
    ============================================================ */
-
 const STYLE_CONFIG = {
   classic: {
-    font: "700 50px 'Noto Serif TC'",
+    font: "500 50px 'Noto Serif', 'Noto Serif TC', serif",
     textColor: "#FFFFFF",
 
     randomAngle: false,
@@ -24,7 +23,7 @@ const STYLE_CONFIG = {
   },
 
   snow: {
-    font: "700 50px 'Noto Serif TC'",
+    font: "500 50px 'Noto Serif', 'Noto Serif TC', serif",
     textColor: "#000000",
     outline: [],
     randomAngle: true,
@@ -33,7 +32,7 @@ const STYLE_CONFIG = {
   },
 
   gold: {
-    font: "700 50px 'Noto Serif TC'",
+    font: "500 50px 'Noto Serif', 'Noto Serif TC', serif",
     textColor: "#000000",
     outline: [],
     randomAngle: false,
@@ -43,8 +42,8 @@ const STYLE_CONFIG = {
   },
 
   pastel: {
-    font: "700 50px 'Noto Serif TC'",
-    textColor: "#24ff27",
+    font: "500 50px 'Noto Serif', 'Noto Serif TC', serif",
+    textColor: "#c20cb5",
 
     randomAngle: false,
     randomScale: false,
