@@ -698,7 +698,7 @@ wsBtn.onclick = () => {
 // 52px LED 專用參數（穩定版）
 // ===============================
 const TARGET_TEXT_SCALE = 0.82; // 字大小（0.78 ~ 0.88）
-const BASELINE_FIX = 20;         // 垂直微調（-2 ~ +6）
+const BASELINE_FIX = 10;         // 垂直微調（-2 ~ +6）
 const RECT_PADDING = 10;        // 矩形左右 padding（16~28）
 
 function renderLedCanvas(ctx, opts) {
