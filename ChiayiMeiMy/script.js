@@ -356,7 +356,7 @@ function drawPreview() {
     }
 
     let x = (PREVIEW_W - totalWidth) / 2;
-    const y = PREVIEW_H / 2;
+    const y = PREVIEW_H / 2+4;
 
     const rectBg = cfg.rectBg ?? null;
 
