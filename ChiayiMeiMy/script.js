@@ -320,8 +320,6 @@ function recalcAngles(text) {
     angles = angles.slice(0, text.length);
   }
 }
-
-
 function drawPreview() {
   const text = inputText.value.trim();
   const cfg = STYLE_CONFIG[currentStyle];
@@ -329,7 +327,12 @@ function drawPreview() {
   const bgImg = new Image();
   bgImg.src = currentBg;
 
-  bgImg.onload = () => {
+  bgImg.onload = async () => {
+    // 確保當前風格使用的字型已就緒
+    if (document.fonts) {
+      await document.fonts.ready;
+    }
+
     // 1️⃣ 清空
     pctx.clearRect(0, 0, PREVIEW_W, PREVIEW_H);
 
@@ -371,15 +374,13 @@ function drawPreview() {
       pctx.rotate(angle);
       pctx.scale(scale, scale);
 
-      // ⭐ Preview 用矩形（原尺寸，不是 LED）
       if (rectBg) {
         const rectW = w + 16;
-        const rectH = 62; // ⭐ preview 專用
+        const rectH = 62;
         pctx.fillStyle = rectBg;
         pctx.fillRect(-8, -rectH / 2, rectW, rectH);
       }
 
-      // outline
       if (cfg.outline && cfg.outline.length > 0) {
         cfg.outline.forEach(out => {
           pctx.lineWidth = out.width;
@@ -388,7 +389,6 @@ function drawPreview() {
         });
       }
 
-      // 文字
       pctx.fillStyle = cfg.textColor;
       pctx.fillText(c, 0, 0);
 
@@ -832,4 +832,14 @@ function exportPNGblob() {
 
 initPageState();
 /* 初始化 */
-drawPreview();
+// 確保字型完全載入後再進行首次繪製
+if (document.fonts) {
+  document.fonts.ready.then(() => {
+    drawPreview();
+  });
+} else {
+  // 舊版瀏覽器向下相容
+  window.addEventListener("load", () => {
+    drawPreview();
+  });
+}
