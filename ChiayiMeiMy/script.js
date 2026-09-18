@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const hour = now.getHours();
 
 
-  if (!isAdmin  && (hour < 24 || hour >= 24)) {
+  if (!isAdmin  && (hour < 18 || hour >= 24)) {
     const overlay = document.createElement("div");
 
     overlay.style.position = "fixed";
@@ -104,8 +104,8 @@ document.addEventListener("DOMContentLoaded", () => {
     overlay.innerHTML = `
             <h1 style="font-size:2rem; ">2026</h1>
              <h1 style="font-size:2rem; margin-bottom:1rem;">嘉義美賣圖鑑</h1>
-            <p style="font-size:1.2rem; margin-bottom:1.5rem;">網站建置中</p>
-            <p style="font-size:1rem;"></p>
+            <p style="font-size:1.2rem; margin-bottom:1.5rem;">目前尚未開放使用</p>
+            <p style="font-size:1rem;">開放時間：晚間 18:00–24:00</p>
         `;
 
     document.body.appendChild(overlay);
@@ -593,61 +593,61 @@ connectWebSocket();
 const clientId = crypto.randomUUID();
 
 
-wsBtn.onclick = () => {
+// wsBtn.onclick = () => {
 
-  // 1️⃣ 沒有輸入內容 → 不可送出
-  const text = inputText.value.trim();
-  if (!text) {
-    alert("請先輸入內容後再傳送");
-    return;
-  }
+//   // 1️⃣ 沒有輸入內容 → 不可送出
+//   const text = inputText.value.trim();
+//   if (!text) {
+//     alert("請先輸入內容後再傳送");
+//     return;
+//   }
 
-  /* 🛠️ 【測試用】暫時略過 LED 裝置斷線檢查
-  if (!ws || ws.readyState !== WebSocket.OPEN || !unityConnected) {
-    alert("LED 裝置斷線中，請稍後再試！");
-    return;
-  }
-  */
+//   /* 🛠️ 【測試用】暫時略過 LED 裝置斷線檢查
+//   if (!ws || ws.readyState !== WebSocket.OPEN || !unityConnected) {
+//     alert("LED 裝置斷線中，請稍後再試！");
+//     return;
+//   }
+//   */
 
-  // 2️⃣ 正常送出（並加入防呆，如果 WS 沒開就直接秀 Done Page 測試畫面）
-  exportPNGblob().then(async blob => {
-    try {
-      const buffer = await blob.arrayBuffer();
+//   // 2️⃣ 正常送出（並加入防呆，如果 WS 沒開就直接秀 Done Page 測試畫面）
+//   exportPNGblob().then(async blob => {
+//     try {
+//       const buffer = await blob.arrayBuffer();
 
-      const header = {
-        type: "HEADER",
-        id: clientId,
-        meta: {
-          style: currentStyle
-        }
-      };
+//       const header = {
+//         type: "HEADER",
+//         id: clientId,
+//         meta: {
+//           style: currentStyle
+//         }
+//       };
 
-      // 只有在 WebSocket 有連上時才送出，避免報錯
-      if (ws && ws.readyState === WebSocket.OPEN) {
-        ws.send(JSON.stringify(header));
-        ws.send(buffer);
-      } else {
-        console.warn("⚠️ WebSocket 尚未連線，目前為純前端介面測試模式");
-      }
+//       // 只有在 WebSocket 有連上時才送出，避免報錯
+//       if (ws && ws.readyState === WebSocket.OPEN) {
+//         ws.send(JSON.stringify(header));
+//         ws.send(buffer);
+//       } else {
+//         console.warn("⚠️ WebSocket 尚未連線，目前為純前端介面測試模式");
+//       }
 
-      // 🔹 顯示 Done Page
-      showDonePage(blob);
+//       // 🔹 顯示 Done Page
+//       showDonePage(blob);
       
-      // 🛠️ 測試用：因為沒有後台回傳 ETA，手動模擬 5 秒後顯示完成動畫
-      startDoneCountdown(5);
+//       // 🛠️ 測試用：因為沒有後台回傳 ETA，手動模擬 5 秒後顯示完成動畫
+//       startDoneCountdown(5);
 
-      console.log("📤 [測試模式] 已模擬送出圖片", header);
+//       console.log("📤 [測試模式] 已模擬送出圖片", header);
 
-    } catch (err) {
-      console.error("❌ 圖片傳送失敗:", err);
-      alert("圖片傳送失敗，請再試一次");
-    }
-  });
-};
+//     } catch (err) {
+//       console.error("❌ 圖片傳送失敗:", err);
+//       alert("圖片傳送失敗，請再試一次");
+//     }
+//   });
+// };
 /* ============================================================
    WebSocket 傳送（JSON Header + Binary Image）
    ============================================================ */
-/*wsBtn.onclick = () => {
+wsBtn.onclick = () => {
 
   // ❌ 1️⃣ 沒有輸入內容 → 不可送出
   const text = inputText.value.trim();
@@ -690,7 +690,7 @@ wsBtn.onclick = () => {
     }
   });
 };
-*/
+
 // ===============================
 // 52px LED 專用參數
 // ===============================
