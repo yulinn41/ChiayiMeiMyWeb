@@ -43,7 +43,7 @@ const STYLE_CONFIG = {
 
   pastel: {
     font: "500 50px 'Noto Serif', 'Noto Serif TC', serif",
-    textColor: "#c20cb5",
+    textColor: "#FF3FB6",
 
     randomAngle: false,
     randomScale: false,

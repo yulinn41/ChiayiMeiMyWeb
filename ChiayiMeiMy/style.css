@@ -331,7 +331,7 @@ body {
 .style-name .zh { font-size: 0.9rem; font-weight: 800; margin-top: 2px; }
 
 #previewCanvas {
-  width: 85%;
+  width: 100%;
   max-width: 800px;
   height: auto;
   display: block;
